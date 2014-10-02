@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Manager
 {
-    class ContentManager: IManager<ProviderContent>
+    class ContentManager: IManager, IContentManager
     {
         public void Add(ProviderContent model)
         {

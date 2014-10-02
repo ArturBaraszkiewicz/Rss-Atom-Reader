@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Manager
 {
-    class ProviderManager: IManager<DataProvider>
+    class ProviderManager: IManager, IProviderManager
     {
         public void Add(DataProvider model)
         {

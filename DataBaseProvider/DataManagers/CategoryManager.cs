@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Manager
 {
-    class CategoryManager: IManager<Category>
+    class CategoryManager: IManager, ICategoryManager
     {
         public void Add(Category model)
         {
