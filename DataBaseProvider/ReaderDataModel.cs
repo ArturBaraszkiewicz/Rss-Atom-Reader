@@ -1,10 +1,11 @@
 namespace DataBaseProvider
 {
+    using DataBaseProvider.Models;
     using System;
     using System.Data.Entity;
     using System.Linq;
 
-    public class ReaderDataModel : DbContext
+    public class ReaderDataModel : DbContext, IDisposable
     {
         // Your context has been configured to use a 'ReaderDataModel' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
@@ -23,36 +24,5 @@ namespace DataBaseProvider
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<DataProvider> DataProviders { get; set; }
         public virtual DbSet<ProviderContent> ProvidersContent { get; set; }
-    }
-
-    public enum DataProviderType {
-        RSS, ATOM, WEB_SITE
-    }
-
-    public class Category
-    {
-        public int Id { get; set; }
-        public string CategoryName { get; set; }
-        public bool IsActive { get; set; }
-    }
-
-
-    public class DataProvider
-    {
-        public int Id { get; set; }
-        public string ProviderName { get; set; }
-        public string ProviderURI { get; set; }
-        public DataProviderType ProviderType { get; set; }
-        public Category ProviderCategory { get; set; }
-    }
-
-    public class ProviderContent 
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Desciption { get; set; }
-        public string Author { get; set; }
-        public DateTime PublicationDate { get; set; }
-        public DataProvider Provider { get; set; }
     }
 }
