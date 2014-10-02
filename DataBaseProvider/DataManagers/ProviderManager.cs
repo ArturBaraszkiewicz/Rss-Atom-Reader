@@ -38,6 +38,17 @@ namespace Manager
             }
         }
 
+        public List<DataProvider> ToFilteredList(Category category)
+        {
+            List<DataProvider> filteredDataProviders = null;
+            using (var databaseCtx = new ReaderDataModel())
+            {
+                var filter = databaseCtx.DataProviders.Where(x => x.ProviderCategory.Id == category.Id && x.IsActive);
+                filteredDataProviders = filter.ToList();
+            }
+            return filteredDataProviders == null ? null : filteredDataProviders;
+        }
+
         public List<DataProvider> ToList()
         {
             List<DataProvider> dataProviders = null;
