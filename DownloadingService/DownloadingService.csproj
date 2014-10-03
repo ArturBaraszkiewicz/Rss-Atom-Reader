@@ -57,6 +57,16 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataBaseProvider\DataBaseProvider.csproj">
+      <Project>{1514a3ed-17df-4f0f-bd94-2819a043ca66}</Project>
+      <Name>DataBaseProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FeedParsers\Parsers.csproj">
+      <Project>{ea5469a4-71a1-4de2-b592-3aadc8752eb6}</Project>
+      <Name>Parsers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
