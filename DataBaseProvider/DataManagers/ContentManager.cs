@@ -13,7 +13,7 @@ namespace Manager
         List<ProviderContent> ToFilteredList(DataProvider provider);
     }
 
-    class ContentManager: IManager, IContentManager
+    class ContentManager: IContentManager
     {
         public void Add(ProviderContent model)
         {

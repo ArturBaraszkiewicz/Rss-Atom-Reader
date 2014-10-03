@@ -13,7 +13,7 @@ namespace Manager
         List<DataProvider> ToFilteredList(Category category);
     }
 
-    class ProviderManager: IManager, IProviderManager
+    class ProviderManager: IProviderManager
     {
         public void Add(DataProvider model)
         {

@@ -7,7 +7,7 @@ namespace Manager
 {
     public interface ICategoryManager : IManager<Category> { }
 
-    class CategoryManager: IManager, ICategoryManager
+    class CategoryManager: ICategoryManager
     {
         public void Add(Category model)
         {
