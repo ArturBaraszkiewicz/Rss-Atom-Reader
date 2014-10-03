@@ -7,31 +7,17 @@ using System.Threading.Tasks;
 
 namespace Manager
 {
-    interface IManager{}
+    public interface IManager{}
 
-    interface ICategoryManager
+    public interface IManager<T> : IManager 
     {
-        void Add(Category model);
-        void Update(Category model);
-        void Delete(Category model);
-        List<Category> ToList();
+        void Add(T model);
+        void Update(T model);
+        void Delete(T model);
+        List<T> ToList();
     }
     
-    interface IProviderManager
-    {
-        void Add(DataProvider model);
-        void Update(DataProvider model);
-        void Delete(DataProvider model);
-        List<DataProvider> ToFilteredList(Category category);
-        List<DataProvider> ToList();
-    }
     
-    interface IContentManager
-    {
-        void Add(ProviderContent model);
-        void Update(ProviderContent model);
-        void Delete(ProviderContent model);
-        List<ProviderContent> ToFilteredList(DataProvider provider);
-        List<ProviderContent> ToList();
-    }
+    
+  
 }

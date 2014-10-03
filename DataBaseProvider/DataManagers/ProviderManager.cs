@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Manager
 {
+    public interface IProviderManager : IManager<DataProvider>
+    {
+        List<DataProvider> ToFilteredList(Category category);
+    }
+
     class ProviderManager: IManager, IProviderManager
     {
         public void Add(DataProvider model)
