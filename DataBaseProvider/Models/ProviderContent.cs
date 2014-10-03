@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBaseProvider.Models
 {
-    class ProviderContent
+    public class ProviderContent
     {
         public int Id { get; set; }
         public string Title { get; set; }
