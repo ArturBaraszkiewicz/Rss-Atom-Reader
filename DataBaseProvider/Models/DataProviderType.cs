@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DownloadingService
+namespace DataBaseProvider.Models
 {
-    public class Class1
+    public enum DataProviderType
     {
+        RSS, 
+        ATOM, 
+        WEB_SITE
     }
 }
