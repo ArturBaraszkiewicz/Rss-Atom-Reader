@@ -1,11 +1,48 @@
 ﻿using Autofac;
 using Manager;
 using System;
+using System.Timers;
 using Topshelf;
 using Topshelf.Autofac;
 
 namespace DownloadingService
-{   
+{
+    public interface ISyncDataService
+    {
+        void Sync();
+    }
+
+    public class SyncDataService : ISyncDataService
+    {
+        private ICategoryManager _categoryManager;
+        private IProviderManager _providerManager;
+        private IContentManager _contentManager;
+        //private IParseService _parseService;
+
+        public SyncDataService(ICategoryManager categoryManager, IProviderManager providerManager,
+            IContentManager contentManager)
+        {
+            _categoryManager = categoryManager;
+            _providerManager = providerManager;
+            _contentManager = contentManager;
+        }
+
+        public void Sync()
+        {
+            var categories = _categoryManager.ToList();
+            categories.ForEach(c => 
+            {
+                var provider = _providerManager.ToFilteredList(c);
+                provider.ForEach(p =>
+                {
+
+                });
+            });
+        }
+
+        
+    }
+
     interface IDownloadingService
 	{
         void Start();
@@ -14,29 +51,33 @@ namespace DownloadingService
     
     class DownloadingService : IDownloadingService
     {
-        private ICategoryManager _categoryManager;
-        private IProviderManager _providerManager;
-        private IContentManager _contentManager;
-        //private IParseService _parseService;
 
-        public DownloadingService(ICategoryManager categoryManager, IProviderManager providerManager, 
-            IContentManager contentManager)//IParseService parseService)
+        private Timer _timer;
+        private DateTime nowTime;
+        private ISyncDataService _syncDataService;
+        
+        public DownloadingService(ISyncDataService syncDataService)//, IParseService parseService)
         {
-            _categoryManager = categoryManager;
-            _providerManager = providerManager;
-            _contentManager = contentManager;
-
+            _syncDataService = syncDataService;
+            _timer = new Timer(1000) {AutoReset = true};
+            _timer.Elapsed += (sender, eventArgs) => nowTime = DateTime.Now;
         }
 
 
         public void Start()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Stop()
         {
             throw new NotImplementedException();
+        }
+
+        private bool IsTimeToUpdate()
+        {
+
+            return false;
         }
     }
 
