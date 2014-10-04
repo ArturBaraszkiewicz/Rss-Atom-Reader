@@ -35,7 +35,8 @@ namespace DownloadingService
                 var provider = _providerManager.ToFilteredList(c);
                 provider.ForEach(p =>
                 {
-
+                    var content = _contentManager.ToFilteredList(p);
+                    //TODO after parsers inserting a content
                 });
             });
         }
@@ -90,6 +91,7 @@ namespace DownloadingService
             builder.RegisterType<CategoryManager>().As<ICategoryManager>();
             builder.RegisterType<ProviderManager>().As<IProviderManager>();
             builder.RegisterType<ContentManager>().As<IContentManager>();
+            builder.RegisterType<SyncDataService>().As<ISyncDataService>();
             builder.RegisterType<DownloadingService>();
             var container = builder.Build();
 
