@@ -26,5 +26,8 @@ namespace DataBaseProvider.Models
 
         public DataProviderType ProviderType { get; set; }
         public Category ProviderCategory { get; set; }
+
+        public DateTime LastSync { get; set; }
+        public TimeSpan SyncPeriod { get; set; }
     }
 }
