@@ -18,5 +18,8 @@ namespace DataBaseProvider.Models
         [MaxLength(255)]
         public string CategoryName { get; set; }
         public bool IsActive { get; set; }
+
+        public DateTime LastSync { get; set; }
+        public TimeSpan SyncPeriod { get; set; }
     }
 }
