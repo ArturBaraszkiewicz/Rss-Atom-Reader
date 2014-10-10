@@ -34,7 +34,7 @@ namespace Manager
         {
             using (var databaseCtx = new ReaderDataModel())
             {
-                databaseCtx.Categories.Remove(model);
+                databaseCtx.Entry(model).State = System.Data.Entity.EntityState.Deleted;
                 databaseCtx.SaveChanges();
             }
         }
