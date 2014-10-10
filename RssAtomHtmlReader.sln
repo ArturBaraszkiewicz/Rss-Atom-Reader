@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2199FA
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Parsers", "Test.Parsers\Test.Parsers.csproj", "{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsersModule", "ParsersModule\ParsersModule.csproj", "{E6184282-07E6-406A-AEC6-371A6D1D46C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +44,14 @@ Global
 		{F1D66927-B22C-4D71-B7AC-D86EDD617F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D66927-B22C-4D71-B7AC-D86EDD617F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D66927-B22C-4D71-B7AC-D86EDD617F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6184282-07E6-406A-AEC6-371A6D1D46C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6184282-07E6-406A-AEC6-371A6D1D46C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6184282-07E6-406A-AEC6-371A6D1D46C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6184282-07E6-406A-AEC6-371A6D1D46C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

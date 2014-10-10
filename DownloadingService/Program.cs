@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Manager;
+using Parsers.Service;
+using ParsersModule;
 using System;
 using System.Timers;
 using Topshelf;
@@ -57,7 +59,7 @@ namespace DownloadingService
         private DateTime nowTime;
         private ISyncDataService _syncDataService;
         
-        public DownloadingService(ISyncDataService syncDataService)//, IParseService parseService)
+        public DownloadingService(ISyncDataService syncDataService, IParserService parserService)
         {
             _syncDataService = syncDataService;
             _timer = new Timer(1000) {AutoReset = true};
@@ -93,6 +95,8 @@ namespace DownloadingService
             builder.RegisterType<ContentManager>().As<IContentManager>();
             builder.RegisterType<SyncDataService>().As<ISyncDataService>();
             builder.RegisterType<DownloadingService>();
+
+            builder.RegisterModule(new ParsesM());
             var container = builder.Build();
 
             HostFactory.Run(x => {
