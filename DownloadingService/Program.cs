@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Manager;
+using Parsers;
 using Parsers.Service;
-using ParsersModule;
 using System;
 using System.Timers;
 using Topshelf;
@@ -96,7 +96,7 @@ namespace DownloadingService
             builder.RegisterType<SyncDataService>().As<ISyncDataService>();
             builder.RegisterType<DownloadingService>();
 
-            builder.RegisterModule(new ParsesM());
+            builder.RegisterModule(new ParsesModule());
             var container = builder.Build();
 
             HostFactory.Run(x => {

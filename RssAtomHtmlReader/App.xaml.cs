@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac;
+using Parsers;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,12 @@ namespace RssAtomHtmlReader
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            var builder = new ContainerBuilder();
+
+            builder.RegisterModule(new ParsesModule());
+        }
     }
 }

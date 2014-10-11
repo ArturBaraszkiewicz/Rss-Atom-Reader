@@ -34,8 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,10 +68,6 @@
     <ProjectReference Include="..\FeedParsers\Parsers.csproj">
       <Project>{ea5469a4-71a1-4de2-b592-3aadc8752eb6}</Project>
       <Name>Parsers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ParsersModule\ParsersModule.csproj">
-      <Project>{e6184282-07e6-406a-aec6-371a6d1d46c5}</Project>
-      <Name>ParsersModule</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
