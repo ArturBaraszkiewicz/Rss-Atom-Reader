@@ -25,7 +25,8 @@ namespace DataBaseProvider.Models
         public string Author { get; set; }
         
         public DateTime PublicationDate { get; set; }
-        
-        public DataProvider Provider { get; set; }
+
+        public int ProviderId { get; set; }
+        public virtual DataProvider Provider { get; set; }
     }
 }

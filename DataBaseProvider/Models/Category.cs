@@ -14,12 +14,17 @@ namespace DataBaseProvider.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        
         [Required(ErrorMessage="You must set category name")]
         [MaxLength(255)]
         public string CategoryName { get; set; }
+        
         public bool IsActive { get; set; }
 
         public DateTime LastSync { get; set; }
+        
         public TimeSpan SyncPeriod { get; set; }
+
+        public virtual List<DataProvider> DataProviders { get; set; }
     }
 }

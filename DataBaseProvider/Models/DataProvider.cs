@@ -22,12 +22,18 @@ namespace DataBaseProvider.Models
         [Required(ErrorMessage="You must set proper url to yout data provider")]
         [MaxLength(255)]
         public string ProviderURI { get; set; }
+        
         public bool IsActive { get; set; }
 
         public DataProviderType ProviderType { get; set; }
-        public Category ProviderCategory { get; set; }
+
+        public int CategoryId { get; set; }
+        public virtual Category ProviderCategory { get; set; }
+
+        public virtual List<ProviderContent> ProviderContentEntrys { get; set; }
 
         public DateTime LastSync { get; set; }
+
         public TimeSpan SyncPeriod { get; set; }
     }
 }
