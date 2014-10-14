@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseModule.cs" />
     <Compile Include="DataManagers\CategoryManager.cs" />
     <Compile Include="DataManagers\ContentManager.cs" />
     <Compile Include="DataManagers\IManager.cs" />

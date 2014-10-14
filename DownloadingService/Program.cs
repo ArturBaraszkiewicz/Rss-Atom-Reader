@@ -6,6 +6,7 @@ using System;
 using System.Timers;
 using Topshelf;
 using Topshelf.Autofac;
+using DataBaseProvider;
 
 namespace DownloadingService
 {
@@ -90,12 +91,7 @@ namespace DownloadingService
         static void Main(string[] args)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<CategoryManager>().As<ICategoryManager>();
-            builder.RegisterType<ProviderManager>().As<IProviderManager>();
-            builder.RegisterType<ContentManager>().As<IContentManager>();
-            builder.RegisterType<SyncDataService>().As<ISyncDataService>();
-            builder.RegisterType<DownloadingService>();
-
+            builder.RegisterModule(new DatabaseModule());
             builder.RegisterModule(new ParsesModule());
             var container = builder.Build();
 
