@@ -47,13 +47,9 @@ namespace DownloadingService
         
     }
 
-    interface IDownloadingService
-	{
-        void Start();
-        void Stop();
-	}
     
-    class DownloadingService : IDownloadingService
+    
+    class DownloadingService
     {
 
         private Timer _timer;
@@ -75,7 +71,7 @@ namespace DownloadingService
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            
         }
 
         private bool IsTimeToUpdate()
@@ -93,6 +89,8 @@ namespace DownloadingService
             var builder = new ContainerBuilder();
             builder.RegisterModule(new DatabaseModule());
             builder.RegisterModule(new ParsesModule());
+            builder.RegisterType<SyncDataService>().As<ISyncDataService>();
+            builder.RegisterType<DownloadingService>();
             var container = builder.Build();
 
             HostFactory.Run(x => {
@@ -107,8 +105,8 @@ namespace DownloadingService
                 x.RunAsLocalSystem();
 
                 x.SetDescription("Rss reader data downloading service");
-                x.SetDisplayName("Downloading Service for atom and rss");
-                x.SetServiceName("rss-atom download");
+                x.SetDisplayName("DownloadingServiceForAtomAndRss");
+                x.SetServiceName("rss-atom-download");
             });
         }
     }
