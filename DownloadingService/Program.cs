@@ -20,30 +20,52 @@ namespace DownloadingService
         private ICategoryManager _categoryManager;
         private IProviderManager _providerManager;
         private IContentManager _contentManager;
-        //private IParseService _parseService;
+        private IParserService _parserService;
 
         public SyncDataService(ICategoryManager categoryManager, IProviderManager providerManager,
-            IContentManager contentManager)
+            IContentManager contentManager, IParserService parserService)
         {
             _categoryManager = categoryManager;
             _providerManager = providerManager;
             _contentManager = contentManager;
+            _parserService = parserService;
         }
 
         public void Sync()
         {
             var categories = _categoryManager.ToList();
+            Console.WriteLine("SyncStart"); // ToDO remowe in production
             categories.ForEach(c => 
             {
-                var provider = _providerManager.ToFilteredList(c);
-                provider.ForEach(p =>
+                var now = DateTime.Now;
+                var updated = false;
+                if (TimeToUpdate(c.LastSync, c.SyncPeriod))
                 {
-                    var content = _contentManager.ToFilteredList(p);
-                    //TODO after parsers inserting a content
-                });
+                    var provider = _providerManager.ToFilteredList(c);
+                    provider.ForEach(p =>
+                    {
+                        var content = _contentManager.ToFilteredList(p);
+
+                    });
+                    updated = true;
+                }
+                if (updated)
+                {
+                    c.LastSync = now;
+                    updated = false;
+                }
+
             });
+            Console.WriteLine("SyncEnd");
         }
 
+        private bool TimeToUpdate(DateTime lastUpdate, TimeSpan syncPeriod) 
+        {
+            var timeToSync = lastUpdate.AddHours(syncPeriod.Hours);
+            var diff = timeToSync - lastUpdate;
+            if (diff.Duration() > syncPeriod.Duration()) return true;
+            return false;
+        }
         
     }
 
@@ -56,28 +78,23 @@ namespace DownloadingService
         private DateTime nowTime;
         private ISyncDataService _syncDataService;
         
-        public DownloadingService(ISyncDataService syncDataService, IParserService parserService)
+        public DownloadingService(ISyncDataService syncDataService)
         {
             _syncDataService = syncDataService;
-            _timer = new Timer(1000) {AutoReset = true};
-            _timer.Elapsed += (sender, eventArgs) => nowTime = DateTime.Now;
+            var invokeInterval = TimeSpan.FromMinutes(3).TotalMilliseconds;
+            _timer = new Timer(invokeInterval) {AutoReset = true};
+            _timer.Elapsed += (sender, eventArgs) => _syncDataService.Sync();
         }
 
 
         public void Start()
         {
-            
+            _timer.Start();
         }
 
         public void Stop()
         {
-            
-        }
-
-        private bool IsTimeToUpdate()
-        {
-
-            return false;
+            _timer.Stop();
         }
     }
 
@@ -93,13 +110,14 @@ namespace DownloadingService
             builder.RegisterType<DownloadingService>();
             var container = builder.Build();
 
-            HostFactory.Run(x => {
+            HostFactory.Run(x =>
+            {
                 x.UseAutofacContainer(container);
-                x.Service<DownloadingService>(c => 
+                x.Service<DownloadingService>(c =>
                 {
                     c.ConstructUsingAutofacContainer();
                     c.WhenStarted(service => service.Start());
-                    c.WhenStopped(service => service.Stop());                
+                    c.WhenStopped(service => service.Stop());
                 });
 
                 x.RunAsLocalSystem();
@@ -108,6 +126,7 @@ namespace DownloadingService
                 x.SetDisplayName("DownloadingServiceForAtomAndRss");
                 x.SetServiceName("rss-atom-download");
             });
+           
         }
     }
 }
