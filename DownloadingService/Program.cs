@@ -34,7 +34,7 @@ namespace DownloadingService
         public void Sync()
         {
             var categories = _categoryManager.ToList();
-            Console.WriteLine("SyncStart"); // ToDO remowe in production
+            Console.WriteLine("SyncStart"); // ToDO remove in production
             categories.ForEach(c => 
             {
                 var now = DateTime.Now;
@@ -56,7 +56,7 @@ namespace DownloadingService
                 }
 
             });
-            Console.WriteLine("SyncEnd");
+            Console.WriteLine("SyncEnd");// ToDO remove in production
         }
 
         private bool TimeToUpdate(DateTime lastUpdate, TimeSpan syncPeriod) 
