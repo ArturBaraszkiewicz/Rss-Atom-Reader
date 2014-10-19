@@ -28,8 +28,7 @@ namespace Manager
         {
             using (var databaseCtx = new ReaderDataModel())
             {
-                var updateProvider = databaseCtx.DataProviders.Single(x => x.Id == model.Id);
-                updateProvider = model;
+                databaseCtx.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 databaseCtx.SaveChanges();
             }
         }

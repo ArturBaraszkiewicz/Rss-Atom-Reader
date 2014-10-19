@@ -15,17 +15,16 @@ namespace DataBaseProvider.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
-        [MaxLength(255)]
         public string Title { get; set; }
-        
-        [MaxLength(255)]
+       
         public string Content{ get; set; }
         
         [MaxLength(255)]
         public string Author { get; set; }
         
         public DateTime PublicationDate { get; set; }
-        
-        public DataProvider Provider { get; set; }
+
+        public int ProviderId { get; set; }
+        public virtual DataProvider Provider { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssAtomHtmlReader", "RssAtomHtmlReader\RssAtomHtmlReader.csproj", "{4F78E536-CFAD-4934-A627-879FFEE6565F}"
 EndProject
@@ -20,7 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2199FA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Parsers", "Test.Parsers\Test.Parsers.csproj", "{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsersModule", "ParsersModule\ParsersModule.csproj", "{E6184282-07E6-406A-AEC6-371A6D1D46C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.DataBaseProvider", "DataBaseProviderTests\Test.DataBaseProvider.csproj", "{067B8AFE-830C-4EDE-B6B1-DD62F11EBE71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSyncService", "DataSyncService\DataSyncService.csproj", "{48008CB7-CA3D-4310-AA56-1B823FFC3048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +50,14 @@ Global
 		{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BBE4657-0CF4-42F7-BF2B-496B13AA2739}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6184282-07E6-406A-AEC6-371A6D1D46C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6184282-07E6-406A-AEC6-371A6D1D46C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6184282-07E6-406A-AEC6-371A6D1D46C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6184282-07E6-406A-AEC6-371A6D1D46C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067B8AFE-830C-4EDE-B6B1-DD62F11EBE71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067B8AFE-830C-4EDE-B6B1-DD62F11EBE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067B8AFE-830C-4EDE-B6B1-DD62F11EBE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067B8AFE-830C-4EDE-B6B1-DD62F11EBE71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48008CB7-CA3D-4310-AA56-1B823FFC3048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48008CB7-CA3D-4310-AA56-1B823FFC3048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48008CB7-CA3D-4310-AA56-1B823FFC3048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48008CB7-CA3D-4310-AA56-1B823FFC3048}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

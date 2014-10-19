@@ -1,5 +1,4 @@
-﻿using Autofac;
-using Parsers.Parser;
+﻿using Parsers.Parser;
 using Parsers.Service;
 using Parsers.Model;
 using System;
@@ -7,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 
-namespace ParsersModule
+namespace Parsers
 {
-    public class ParsesM : Module
+    public class ParsesModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

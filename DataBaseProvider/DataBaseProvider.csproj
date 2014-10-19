@@ -53,10 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseModule.cs" />
     <Compile Include="DataManagers\CategoryManager.cs" />
     <Compile Include="DataManagers\ContentManager.cs" />
     <Compile Include="DataManagers\IManager.cs" />
     <Compile Include="DataManagers\ProviderManager.cs" />
+    <Compile Include="Migrations\201410161834556_InitialCreate.cs" />
+    <Compile Include="Migrations\201410161834556_InitialCreate.Designer.cs">
+      <DependentUpon>201410161834556_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DataProvider.cs" />
     <Compile Include="Models\DataProviderType.cs" />
@@ -65,8 +71,15 @@
     <Compile Include="ReaderDataModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410161834556_InitialCreate.resx">
+      <DependentUpon>201410161834556_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
