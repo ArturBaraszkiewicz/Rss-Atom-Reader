@@ -68,7 +68,6 @@
     <Compile Include="DownloadingService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SyncDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -78,6 +77,10 @@
     <ProjectReference Include="..\DataBaseProvider\DataBaseProvider.csproj">
       <Project>{1514a3ed-17df-4f0f-bd94-2819a043ca66}</Project>
       <Name>DataBaseProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataSyncService\DataSyncService.csproj">
+      <Project>{48008cb7-ca3d-4310-aa56-1b823ffc3048}</Project>
+      <Name>DataSyncService</Name>
     </ProjectReference>
     <ProjectReference Include="..\FeedParsers\Parsers.csproj">
       <Project>{ea5469a4-71a1-4de2-b592-3aadc8752eb6}</Project>

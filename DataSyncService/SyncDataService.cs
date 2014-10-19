@@ -3,10 +3,13 @@ using Manager;
 using Parsers.Model;
 using Parsers.Service;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
-namespace DownloadingService
+namespace DataSyncService
 {
     public interface ISyncDataService
     {
@@ -14,46 +17,8 @@ namespace DownloadingService
         void Sync();
     }
 
-    public class XMLSource : ISource
-    {
-
-        public System.Xml.XmlReader XmlReader { set; get; }
-    }
-
     public class SyncDataService : ISyncDataService
     {
-        //remove in production
-        public bool test = true;
-        public void TestPrepare()
-        {
-            if (test)
-            {
-                var now = DateTime.Now;
-                var testCat = new Category
-                {
-                    CategoryName = "News",
-                    IsActive = true,
-                    LastSync = now,
-                    SyncPeriod = TimeSpan.FromMinutes(2)
-                };
-                _categoryManager.Add(testCat);
-                var tmpCat = _categoryManager.ToList().First();
-                var testProvider = new DataProvider
-                {
-                    CategoryId = tmpCat.Id,
-                    IsActive = true,
-                    LastSync = now,
-                    ProviderURI = "http://wiadomosci.wp.pl/ver,rss,rss.xml",
-                    ProviderName = "Polish News",
-                    ProviderType = DataProviderType.ATOM,
-                    SyncPeriod = TimeSpan.FromMinutes(2)
-                };
-
-                _providerManager.Add(testProvider);
-            }
-            test = false;
-        }
-        //end remove
         private ICategoryManager _categoryManager;
         private IProviderManager _providerManager;
         private IContentManager _contentManager;
@@ -73,14 +38,12 @@ namespace DownloadingService
         {
             Locked = true;
             var categories = _categoryManager.ToList();
-            Console.WriteLine("SyncStart"); // ToDO remove in production
             categories.ForEach(c =>
             {
                 var now = DateTime.Now;
 
                 if (TimeToUpdate(c.LastSync, c.SyncPeriod))
                 {
-                    Console.WriteLine("Update Category: {0}", c.CategoryName);
                     var provider = _providerManager.ToFilteredList(c);
                     provider.ForEach(p =>
                     {
@@ -89,21 +52,16 @@ namespace DownloadingService
                             XmlReader = XmlReader.Create(p.ProviderURI)
                         };
                         var data = _parserService.Process(source);
-                        Console.WriteLine("Update Provider: {0}", p.ProviderName);
-                        var contentFromProvider = _contentManager.ToFilteredList(p);
-                        Console.WriteLine("IsNull {0}", contentFromProvider.Count > 0);
+                        var contentFromProvider = _contentManager.ToFilteredList(p).OrderBy(x => x.PublicationDate).ToList();
                         DateTimeOffset lastItemPubDate;
                         if (contentFromProvider.Count > 0)
                             lastItemPubDate = contentFromProvider.Last().PublicationDate;
                         else
                             lastItemPubDate = DateTimeOffset.MinValue;
-                        Console.WriteLine("Time Assign {0}", lastItemPubDate);
                         data.Items.ToList().ForEach(x =>
                         {
-                            Console.WriteLine("ChekingParsedData");
                             if (x.PubDate > lastItemPubDate)
                             {
-                                Console.WriteLine("Add {0}", x.Title);
                                 var tmpCtn = new ProviderContent
                                 {
                                     ProviderId = p.Id,
@@ -112,18 +70,17 @@ namespace DownloadingService
                                     PublicationDate = new DateTime(x.PubDate.Year, x.PubDate.Month, x.PubDate.Day, x.PubDate.Hour, x.PubDate.Minute, x.PubDate.Second),
                                     Author = ""
                                 };
-                                Console.WriteLine("model created");
                                 _contentManager.Add(tmpCtn);
-                                Console.WriteLine("Model added");
                             }
                         });
                         p.LastSync = now;
+                        _providerManager.Update(p);
                     });
                     c.LastSync = now;
+                    _categoryManager.Update(c);
                 }
             });
             Locked = false;
-            Console.WriteLine("SyncEnd");// ToDO remove in production
         }
 
         private bool TimeToUpdate(DateTime lastUpdate, TimeSpan syncPeriod)

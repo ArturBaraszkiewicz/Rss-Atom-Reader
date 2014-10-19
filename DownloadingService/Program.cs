@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using DataBaseProvider;
+using DataSyncService;
 using Parsers;
 using Topshelf;
 using Topshelf.Autofac;
@@ -13,7 +14,7 @@ namespace DownloadingService
             var builder = new ContainerBuilder();
             builder.RegisterModule(new DatabaseModule());
             builder.RegisterModule(new ParsesModule());
-            builder.RegisterType<SyncDataService>().As<ISyncDataService>();
+            builder.RegisterModule(new SyncDataServiceModule());
             builder.RegisterType<DownloadingService>();
             var container = builder.Build();
 
